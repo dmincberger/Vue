@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <h1>{{ title }}</h1>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    Vue.createApp({
+
+        data() {
+            return {
+                title: "title"
+            }
+        }
+    }).mount("#app")
+</script>
