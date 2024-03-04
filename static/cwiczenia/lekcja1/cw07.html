@@ -5,21 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <title>Document</title>
 </head>
 
 <body>
     <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
 
     <div id="app">
-        <a v-bind:href="onet_url">ONET</a>
-        <a :href="onet_url">ONET
-            <img v-bind:width="img_width" v-bind:height="img_height" v-bind:src="img_src" />
-            <img :width="img_width" :height="img_height" :src="img_src" />
-    </div>
 
+
+        <h2>Komunikat z pola txt: {{ message }}</h2>
+
+        <input v-model="message" type="text">
+
+        <h5>Wybrane z selecta: {{ selected }}</h5>
+
+        <select v-model="selected">
+            <option>aaa</option>
+            <option>bbb</option>
+            <option>ccc</option>
+        </select>
+    </div>
 </body>
 
 </html>
@@ -28,17 +36,9 @@
     const app = Vue.createApp({
         data() {
             return {
-                onet_url: "http://onet.pl",
-                img_width: 200,
-                img_height: 100,
-                img_src: "gfx/google.jpg"
-
+                message: "zawartość pola txt",
+                selected: ""
             }
         }
     }).mount("#app")
-
-    // app.title += "powinno nie zmienic sie"
-
-</script>
-
 </script>
