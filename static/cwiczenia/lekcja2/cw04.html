@@ -13,7 +13,11 @@
 <body>
     <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
     <div id="app">
-        <h1>{{ title }}</h1>
+        <h3>{{title1}}</h3>
+        <li v-for="(value,key) in object">{{key}} - {{value}} </li>
+        <h2>{{title2}}</h2>
+        <li v-for="(val, key, index) in object">{{index}} - {{key}} - {{val}}</li>
+
     </div>
 
 </body>
@@ -21,11 +25,17 @@
 </html>
 
 <script>
-   const app = Vue.createApp({
+    const app = Vue.createApp({
 
         data() {
             return {
-                title: "title"
+                object: {
+                    a: 111,
+                    b: 222,
+                    c: 333
+                },
+                title1: "ul 1 - value key obiektu",
+                title2: "ul 2 - value key index obiektu"
             }
         }
     }).mount("#app")

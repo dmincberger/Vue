@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <h2>długość tekstu: {{ getTextLength2() }}</h2>
+        <h2>długość tekstu: {{ getTextLength(text) }}</h2>
+
+        <h2 v-text="getTextLength(text)"></h2>
+        <h2 v-html="getTextLengthWithHTML()"></h2>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                text: "ale super tekst"
+            }
+        },
+        methods: {
+            getTextLength(val) {
+                return val.length
+            },
+            getTextLength2() {
+                return this.text.length
+            },
+            getTextLengthWithHTML() {
+                return "długość text: " + this.text.length
+            },
+            setLength(val) {
+                this.length = val
+            }
+        }
+    }).mount("#app")
+</script>

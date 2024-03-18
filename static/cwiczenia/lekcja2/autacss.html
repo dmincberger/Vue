@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <h1>AUTA:</h1>
+        <h2>AUTKO: {{get_car(2)}}</h2>
+        <h2>AUTKO: {{get_car(1)}}</h2>
+        <h2>AUTKO: {{get_car(3)}}</h2>
+        <hr>
+        <div v-for="auto of auta">
+            <div>
+                <h1 style="color:aliceblue">{{auto["model"]}}-{{auto["rok"]}}</h1>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                auta: [{ id: 0, model: "super", typ: "moj", rok: 1960 },
+                { id: 1, model: "superasne kwasne", typ: "mojeniemoje", rok: 2001 },
+                { id: 2, model: "super - 2", typ: "moj2fkwer", rok: 2003 },
+                { id: 3, model: "superasne kwasne chwascie", typ: "mojeniemojeajednakniemoje", rok: 1999 }]
+            }
+        },
+        methods: {
+            get_car(id) {
+                for (const auto of this.auta) {
+                    if (auto["id"] == id) {
+                        return { model: auto["model"], typ: auto["typ"], rok: auto["rok"] }
+                    }
+                }
+                return "brak"
+            }
+        }
+    }).mount("#app")
+</script>

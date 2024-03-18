@@ -13,7 +13,12 @@
 <body>
     <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
     <div id="app">
-        <h1>{{ title }}</h1>
+        <h1>{{ul1}}</h1>
+        <ul v-for="item of array">{{item}}</ul>
+        <h1>{{ul2}}</h1>
+        <ul v-for="item of array">{{item["a"]}} {{item["b"]}}</ul>
+        <h1>{{ul3}}</h1>
+        <ul v-for="(item,i) of array">{{i}}:{{item["a"]}} {{item["b"]}}</ul>
     </div>
 
 </body>
@@ -21,11 +26,14 @@
 </html>
 
 <script>
-   const app = Vue.createApp({
+    Vue.createApp({
 
         data() {
             return {
-                title: "title"
+                ul1: "ul1 - obiekty tablicy",
+                ul2: "ul 2 - wartości obiektów tablicy",
+                ul3: "ul 3 - wartości obiektów tablicy z licznikiem",
+                array: [{ a: 1, b: 4 }, { a: 2, b: 5 }, { a: 3, b: 6 }]
             }
         }
     }).mount("#app")
