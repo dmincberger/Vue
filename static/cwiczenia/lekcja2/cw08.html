@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        {{timer}}
+        <div v-for="elementy of active_array" id="timer_div">
+            <h1 v-bind:class="klasa">{{elementy["id"]}}</h1>
+            <h2></h2>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                array: [
+                    { id: 1, class: "red" },
+                    { id: 2, class: "blue" },
+                    { id: 3, class: "red" },
+                    { id: 4, class: "blue" },
+                    { id: 5, class: "red" },
+
+                ],
+                active_array: [],
+                klasa: "",
+            }
+        },
+        computed: {
+            timer() {
+                setInterval(() => {
+                    console.log("le");
+                    let sekunda_date = new Date()
+                    let sekunda = sekunda_date.getSeconds()
+                    let dzielenie
+                    this.active_array = []
+                    if (sekunda % 2 == 0) {
+                        dzielenie = 0
+                        this.klasa = "blue"
+                    } else {
+                        dzielenie = 1
+                        this.klasa = "red"
+                    }
+                    for (const element of this.array) {
+                        if (element["id"] % 2 == dzielenie) {
+                            this.active_array.push(element)
+                        }
+                    }
+                }, 1000)
+            },
+        }
+
+    }).mount("#app")
+</script>
+
+<style>
+    .blue {
+        width: 250px;
+        height: 250px;
+        background-color: blue;
+    }
+
+    .red {
+        width: 250px;
+        height: 250px;
+        background-color: red;
+        color: yellow;
+    }
+</style>

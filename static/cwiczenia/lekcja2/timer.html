@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <p>{{obecna_czynnosc}}</p>
+
+        <h1>
+            <span>00</span>:<span>{{przedrostek}}{{ second }}</span>
+        </h1>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                przedrostek: "",
+                second: 0,
+                praca: 10,
+                odpoczynek: 10,
+                obecna_czynnosc: "praca",
+                timer_interval: null
+            }
+        },
+        methods: {
+            timer() {
+                this.timer_interval = setInterval(() => {
+                    if (this.second == 0) {
+                        if (this.obecna_czynnosc == "praca") {
+                            this.obecna_czynnosc = "odpoczynek"
+                            this.second = this.odpoczynek
+                        } else {
+                            this.obecna_czynnosc = "praca"
+                            this.second = this.praca
+                        }
+                    }
+                    this.second -= 1
+                    if (this.second < 10) {
+                        this.przedrostek = "0"
+                    } else {
+                        this.przedrostek = ""
+                    }
+                }, 1000);
+            },
+            pause() {
+                clearInterval(this.timer_interval)
+            }
+        }
+    }).mount("#app")
+</script>
