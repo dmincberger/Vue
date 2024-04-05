@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+
+
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <table v-if="produkty.length != 0">
+            <th>L.p</th>
+            <th>nazwa</th>
+            <th>cena</th>
+            <th>status</th>
+            <template id="produkt_sklep" v-for="(item,i) of produkty">
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{item.nazwa}}</td>
+                    <td>{{item.cena}}</td>
+                    <td>{{item.status}}</td>
+                    <input type="checkbox" value="{{item.nazwa}}" id="{{item.nazwa}}" v-on:click="addkoszyk(i)">Dodaj do
+                    koszyka
+                </tr>
+            </template>
+        </table>
+        <h1 v-if="koszyk.length==0">Brak koszyk</h1>
+        <table v-if="koszyk.length != 0">
+            <th>L.p</th>
+            <th>nazwa</th>
+            <th>cena</th>
+            <th>status</th>
+            <template id="koszyk_sklep" v-for="(item,i) of koszyk">
+                <tr>
+                    <td>{{i}}</td>
+                    <td>{{item.nazwa}}</td>
+                    <td>{{item.cena}}</td>
+                    <td>{{item.status}}</td>
+                </tr>
+            </template>
+        </table>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                produkty: [{ nazwa: "Mysz", cena: 1000, status: "nie" },
+                { nazwa: "aparat", cena: 1500, status: "nie" },
+                { nazwa: "klawiatura", cena: 2000, status: "nie" },
+                { nazwa: "kawa", cena: 1003, status: "nie" },
+                { nazwa: "kosmetyki", cena: 1020, status: "nie" }],
+                koszyk: []
+            }
+        },
+        methods: {
+            addkoszyk(id) {
+                if (this.produkty[id]["status"] == "nie") {
+                    this.produkty[id]["status"] = "tak"
+                    this.koszyk.push(this.produkty[id])
+                } else {
+                    this.produkty[id]["status"] = "nie"
+                    for (let i = 0; i < this.koszyk.length; i++) {
+                        if (this.koszyk[i]["status"] == this.produkty[id]["status"]) {
+                            this.koszyk.splice(i, 1)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }).mount("#app")
+</script>

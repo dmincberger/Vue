@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <li v-for="item in items" v-bind:class="{ 'active':item.checked}">
+            <h1>{{item.text}}</h1>
+            <input type="checkbox" v-model="item.checked">
+        </li>
+        <input id="pole" type="text" v-on:keyup.enter="addItem">
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                items: [
+                    { text: "element 1", checked: true },
+                    { text: "element 2", checked: false },
+                    { text: "element 3", checked: false },
+                ]
+            }
+        },
+        methods: {
+            addItem() {
+                let tekst = document.getElementById("pole").value
+                this.items.push({ text: tekst, checked: false })
+            }
+        }
+    }).mount("#app")
+</script>
+<style>
+    .active {
+        color: red;
+    }
+</style>
