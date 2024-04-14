@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <form action="/aaa" method="POST" @reset="reset" @submit="submit">
+            <input type="reset">
+            <input type="submit">
+            <input type="checkbox" id="blok">Blokowanie formularza
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                title: "title",
+            }
+        },
+        methods: {
+            reset(e) {
+                let blok = document.getElementById("blok").checked
+                console.log(blok);
+                if (blok) {
+                    e.preventDefault();
+                    console.log("formularz się nie resetuje")
+                }
+            },
+            submit(e) {
+                let blok = document.getElementById("blok").checked
+                console.log(blok);
+                if (blok) {
+                    e.preventDefault();
+                    console.log("formularz się nie wysyła")
+                }
+            }
+        }
+    }).mount("#app")
+</script>

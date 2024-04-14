@@ -28,6 +28,10 @@ app.post("/foldery", function (req, res) {
     res.send(JSON.stringify(pliki))
 })
 
+app.post("/aaa", function (req, res) {
+    res.send("LOL")
+})
+
 app.listen(PORT, function () {
     console.log("SERWER DZIALA NA PORCIE: " + PORT);
 })
