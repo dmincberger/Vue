@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        Zpotęgowana wartość: {{zpotegowana}}
+        <item-component v-for="item of items" v-bind:prop-x="item" :func-prop="Potegowanie">
+
+        </item-component>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const ItemComponent = {
+        template: `<h1>{{this.propX}}</h1>
+        <button v-on:click="addItem(this.propX)">POTEGA</button>`,
+        props: ["propX", "funcProp"],
+        methods: {
+            addItem(val) {
+                this.funcProp(val)
+            }
+        }
+    }
+    const app = Vue.createApp({
+        data() {
+            return {
+                items: [
+                    1000, 2000, 3000
+                ],
+                zpotegowana: 0
+            }
+        },
+        components: {
+            "item-component": ItemComponent
+        },
+        methods: {
+            Potegowanie(item) {
+                console.log(item);
+                this.zpotegowana = item ** 2
+            }
+        }
+    }).mount("#app")
+</script>

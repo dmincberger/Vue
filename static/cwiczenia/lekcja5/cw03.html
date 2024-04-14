@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <component-a prop-a="Jan" prop-b="Nowak"></component-a>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const ComponentA = {
+
+        template: `
+    <div>               
+        <p>{{ this.propA }}</p>
+        <p>{{ this.propB  }}</p>
+        <pre>{{JSON.stringify(this.$props, null, 5)}}</pre>
+    </div>    
+
+`,
+
+        props: ["propA", "propB"],
+
+    };
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                title: "title"
+            }
+        },
+        components: {
+            "component-a": ComponentA
+        }
+    }).mount("#app")
+</script>

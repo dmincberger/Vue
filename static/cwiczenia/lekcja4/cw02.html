@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <input v-model="name" /> Długość: {{ name }}
+        <input v-model="wiek" /> Długość: {{ wiek }}
+        <input v-model="zawod" /> Długość: {{ zawod }}
+        <input v-model="wynagrodzenie" /> Długość: {{ wynagrodzenie }}
+        <input type="submit" value="Wyślij" :disabled="!isReady" />
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                name: "",
+                wiek: "",
+                zawod: "",
+                wynagrodzenie: ""
+            }
+        },
+        computed: {
+            isReady() {
+                if (this.wiek.length > 0 && this.name.length > 0 && this.zawod.length > 0 && this.wynagrodzenie.length > 0) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }).mount("#app")
+</script>

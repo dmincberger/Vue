@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <component-a></component-a>
+        <add-item-comp></add-item-comp>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    ComponentA = {
+        template: "<h3>ComponentA</h3>"
+    }
+    AddItemComp = {
+        template: "<h3>Item</h3>"
+    }
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                title: "title"
+            }
+        },
+        components: {
+            "component-a": ComponentA,
+            "add-item-comp": AddItemComp
+        }
+    }).mount("#app")
+</script>

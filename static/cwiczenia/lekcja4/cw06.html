@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <h1>Akcesoria</h1>
+        <template v-for="(item,i) of products">
+            <input type="checkbox" v-on:click="Koszyk(item)">{{item.name}} {{item.price}} {{Waluta(item.currency)}}<br>
+        </template>
+        <template v-for="item of options" :key="item.option">
+            <input type="radio" name="odbior" :value="item.option" v-model="Odbior">{{item.option}}
+        </template>
+        <select id="odbior" v-model="Odbior">
+            <option v-for="item of options">{{item.option}}</option>
+        </select>
+        Sposob dostawy: {{Odbior}}
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                products: [
+                    { name: "Myszka", checked: 'nie', price: 30, currency: "PLN" },
+                    { name: "Laptop", checked: 'nie', price: 2500, currency: "GBP" },
+                    { name: "Komputer", checked: 'nie', price: 4000, currency: "PLN" },
+                    { name: "Monitor", checked: 'nie', price: 1000, currency: "GBP" },
+                    { name: "Głośniki", checked: 'nie', price: 600, currency: "USD" }
+                ],
+                options: [
+
+                    { option: 'Kurier' },
+                    { option: 'Poczta' },
+                    { option: 'Osobiście' }
+
+                ],
+                dodane: [],
+                Odbior: "",
+            }
+        },
+        methods: {
+            Waluta(skrot) {
+                let skroty = {
+                    "PLN": "Zloty",
+                    "GBP": "Funt",
+                    "USD": "Dollar"
+                }
+                return skroty[skrot]
+            },
+            Koszyk(item) {
+                if (!this.dodane.includes(item)) {
+                    this.dodane.push(item)
+                    console.log(this.dodane);
+                } else {
+                    let index = this.dodane.indexOf(item)
+                    this.dodane.splice(index, 1)
+                    console.log(this.dodane);
+                }
+            }
+        },
+
+    }).mount("#app")
+</script>

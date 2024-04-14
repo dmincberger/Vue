@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="cw01.js"></script> -->
+</head>
+
+<body>
+    <a href="../index.html" id="test">WROC DO GLOWNEJ</a>
+    <div id="app">
+        <div id="Akcesoria">
+            <h2><i>Akcesoria</i></h2>
+            <input type="checkbox">Myszka
+            <input type="checkbox">Laptop
+            <input type="checkbox">Klawiatura
+        </div>
+        <div id="odbior">
+            <input type="radio" name="forma" value="Poczta" v-model="Odbior">Poczta
+            <input type="radio" name="forma" value="Kurier" v-model="Odbior">Kurier
+            <input type="radio" name="forma" value="Sklep" v-model="Odbior">Sklep
+        </div>
+        Typ dostawy: {{Odbior}}
+        <div id="potwierdz">
+            <input type="checkbox" name="Potwierdz" v-model="Wyslij">Potwierdzam zgodnosc danych
+        </div>
+        <input type="submit" Value="Wyslij" :disabled="!isReady">
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                Wyslij: null,
+                Odbior: ""
+
+            }
+        },
+        computed: {
+            isReady() {
+
+                if (this.Wyslij) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }).mount("#app")
+</script>
